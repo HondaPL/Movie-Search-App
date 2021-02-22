@@ -137,7 +137,7 @@ class MovieCard extends React.Component {
       if (!Ratings || Ratings.length<2 || Ratings[1].Source !== "Rotten Tomatoes") {
             tomato = "https://cdn2.iconfinder.com/data/icons/food-vegetables-grey/64/Vegetable_Tomato-512.png";
             ranking = 'None';
-      } else if(Ratings[1].Value[0]>5){
+      } else if(Ratings[1].Value[0]>5 || Ratings[1].Value.length === 4){
         tomato = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Rotten_Tomatoes.svg/1009px-Rotten_Tomatoes.svg.png";
         ranking = Ratings[1].Value;
       } else {
