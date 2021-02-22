@@ -171,7 +171,7 @@ class MovieCard extends React.Component {
                     <ul>
                         <li><a href={"https://www.imdb.com/title/" + imdbID + "/"}><img  width="70px" height="40px" src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png" alt=""/></a></li>
                         {/* <li><a href={"https://upflix.pl/film/zobacz/" + Title.replace(/\s+/g, '-').replace(':','') + "-" + Released.substr(-4)}><img  width="100px" height="25px" src="https://assets.upflix.pl/dist/img/logo.png" /></a></li> */}
-                        <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://trakt.tv/assets/logos/white-bg@2x-626e9680c03d0542b3e26c3305f58050d2178e5d4222fac7831d83cf37fef42b.png" alt=""/></a></li>
+                        <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://walter.trakt.tv/hotlink-ok/public/favicon.png" alt=""/></a></li>
                     </ul>
                 </div>
             </div>
