@@ -69,11 +69,6 @@ render() {
                     another search criteria.
                 </h1>
             )}
-            {/* {
-          this.state.movies.map((movie) => {
-          return <Movie {...movie}/>
-          })
-      } */}
       </div>
     </div>
     );
@@ -156,7 +151,7 @@ class MovieCard extends React.Component {
                 </div>
                 <div className="movie_social">
                 <span className="minutes">{Runtime}</span>
-                    <span className="rating">{imdbRating}/10</span>
+                    <span className="rating">{imdbRating === 'N/A' ? imdbRating/10 : 'N/A'}</span>
                     <span className="rating">{ranking} <img width="18px" height="18px" src={tomato} alt=" "></img></span>
                     <br></br>
                     <p className="type">{Genre && Genre.split(', ').map(g => <span className="type">{g}</span>)}</p>
