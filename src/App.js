@@ -26,9 +26,9 @@ search = event => {
             }
 
             const movies2 = res.Search.map(movie => movie.imdbID);
-            console.log(movies2);
+            // console.log(movies2);
             const movies = Array.from(new Set(movies2));
-            console.log(movies);
+            // console.log(movies);
             this.setState({
                 movies
             });
@@ -94,7 +94,7 @@ class MovieCard extends React.Component {
             )
             .then(res => res.data)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 this.setState({ movieData: res });
             });
             
@@ -113,9 +113,10 @@ class MovieCard extends React.Component {
         "country": "pl",
         "imdb_id": this.props.movieID
     });
-    
+    //b569da850cmsh29a3e3ee9449ef2p18187ajsnfafd166c72ca
+    //6a6a213143msh0b5e300691aacd5p1b09bbjsnf7ce3ea5d4e7
     req.headers({
-        "x-rapidapi-key": "6a6a213143msh0b5e300691aacd5p1b09bbjsnf7ce3ea5d4e7",
+        "x-rapidapi-key": "b569da850cmsh29a3e3ee9449ef2p18187ajsnfafd166c72ca",
         "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
         "useQueryString": true
     });
@@ -154,13 +155,26 @@ class MovieCard extends React.Component {
       } = this.state.streamingData;
 
       let netflix = "";
+      let prime = "";
+      let disney = "";
+
 
       if(streamingInfo) {
-          console.log(streamingInfo);
+        //   console.log(streamingInfo);
           if(streamingInfo.netflix){
-            console.log(streamingInfo.netflix.pl.link);
+            // console.log(streamingInfo.netflix.pl.link);
             netflix = streamingInfo.netflix.pl.link;
-            console.log(netflix);
+            // console.log(netflix);
+          }
+          if(streamingInfo.prime){
+            // console.log(streamingInfo.prime.pl.link);
+            prime = streamingInfo.prime.pl.link;
+            // console.log(prime);
+          }
+          if(streamingInfo.disney){
+            // console.log(streamingInfo.disney.pl.link);
+            disney = streamingInfo.disney.pl.link;
+            // console.log(disney);
           }
       }
 
@@ -232,7 +246,7 @@ class MovieCard extends React.Component {
                         <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://walter.trakt.tv/hotlink-ok/public/favicon.png" alt=""/></a></li>
                         {
                             !streamingInfo && this.state.working === 'yes' 
-                            ? <li><button className="button minutes" value={imdbID} onClick={this.checkAvaiblity}>Netflix?</button></li>
+                            ? <li><button className="button minutes" value={imdbID} onClick={this.checkAvaiblity}>Streaming?</button></li>
                             : ""
                         }
                         {/* { streamingInfo.netflix.pl.link && streamingInfo.netflix.pl.link.length > 0  */}
@@ -242,6 +256,16 @@ class MovieCard extends React.Component {
                         {
                             netflix.length > 0 
                             ? <li><a href={netflix}><img  width="40px" height="40px" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png" alt=""/></a></li>
+                            : ""
+                        }
+                        {
+                            prime.length > 0 
+                            ? <li><a href={prime}><img  width="40px" height="40px" src="https://appforwin10.com/wp-content/uploads/2018/12/Amazon-Prime-Video-Free-Download-for-Windows-10.png" alt=""/></a></li>
+                            : ""
+                        }
+                        {
+                            disney.length > 0 
+                            ? <li><a href={disney}><img  width="40px" height="40px" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0cd82ff4-fa94-4020-9a16-f41089efc593/dd5d95n-46013979-82a8-4fae-ac31-fd4865a8d99d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMGNkODJmZjQtZmE5NC00MDIwLTlhMTYtZjQxMDg5ZWZjNTkzXC9kZDVkOTVuLTQ2MDEzOTc5LTgyYTgtNGZhZS1hYzMxLWZkNDg2NWE4ZDk5ZC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.mL37S_siI4svhpddNLPe-E__VgYmMDwTea5XNYBGp0k" alt=""/></a></li>
                             : ""
                         }
                         {
