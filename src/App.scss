@@ -244,3 +244,22 @@ body{
   text-align: center;
   color: white;
 }
+.button{
+  background-color: #555555;
+  border: none;
+  position: relative;
+  // color: white;
+  // padding: 15px 32px;
+  // text-align: center;
+  // text-decoration: none;
+  // display: inline-block;
+  // margin: 4px 2px;
+  // position: relative;
+  margin-top: 20px;
+  padding-top: -200px;
+  cursor: pointer;
+  top: -15px;
+}
+
+.availability{
+}

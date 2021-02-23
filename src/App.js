@@ -78,24 +78,60 @@ render() {
 
 class MovieCard extends React.Component {
   state = {
-      movieData: {}
+      movieData: {},
+      streamingData: {},
+      working: "yes"
   };
 
   componentDidMount() {
     var axios = require("axios").default;
 
-      axios
-          .get(
-              `https://www.omdbapi.com/?apikey=756abb2f&i=${
-                  this.props.movieID
-              }`
-          )
-          .then(res => res.data)
-          .then(res => {
-              console.log(res);
-              this.setState({ movieData: res });
-          });
+        axios
+            .get(
+                `https://www.omdbapi.com/?apikey=756abb2f&i=${
+                    this.props.movieID
+                }`
+            )
+            .then(res => res.data)
+            .then(res => {
+                console.log(res);
+                this.setState({ movieData: res });
+            });
+            
+
+          
   }
+
+  checkAvaiblity = event => {
+    var unirest = require("unirest");
+
+    event.preventDefault();
+
+    var req = unirest("GET", "https://streaming-availability.p.rapidapi.com/get/basic");
+    
+    req.query({
+        "country": "pl",
+        "imdb_id": this.props.movieID
+    });
+    
+    req.headers({
+        "x-rapidapi-key": "6a6a213143msh0b5e300691aacd5p1b09bbjsnf7ce3ea5d4e7",
+        "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
+        "useQueryString": true
+    });
+    
+    
+    req.end(res => {
+        if (res.error) {
+            this.setState({working: "no"});
+            return;
+        }
+        // console.log(res.body["streamingInfo"]);
+        const bodyJSON = JSON.parse(res.body);
+        this.setState({streamingData: bodyJSON})
+    });
+  }
+
 
   render() {
       const {
@@ -112,6 +148,28 @@ class MovieCard extends React.Component {
           Type,
           Metascore
       } = this.state.movieData;
+
+      const {
+        streamingInfo
+      } = this.state.streamingData;
+
+      let netflix = "";
+
+      if(streamingInfo) {
+          console.log(streamingInfo);
+          if(streamingInfo.netflix){
+            console.log(streamingInfo.netflix.pl.link);
+            netflix = streamingInfo.netflix.pl.link;
+            console.log(netflix);
+          }
+      }
+
+    //   console.log(this.state.movieData);
+    //   console.log(this.state.streamingData);
+    //   console.log(streamingInfo);
+    //   console.log(Ratings);
+
+
 
 
       if (!Poster || Poster === 'N/A') {
@@ -172,6 +230,25 @@ class MovieCard extends React.Component {
                         <li><a href={"https://www.imdb.com/title/" + imdbID + "/"}><img  width="70px" height="40px" src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png" alt=""/></a></li>
                         {/* <li><a href={"https://upflix.pl/film/zobacz/" + Title.replace(/\s+/g, '-').replace(':','') + "-" + Released.substr(-4)}><img  width="100px" height="25px" src="https://assets.upflix.pl/dist/img/logo.png" /></a></li> */}
                         <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://walter.trakt.tv/hotlink-ok/public/favicon.png" alt=""/></a></li>
+                        {
+                            !streamingInfo && this.state.working === 'yes' 
+                            ? <li><button className="button minutes" value={imdbID} onClick={this.checkAvaiblity}>Netflix?</button></li>
+                            : ""
+                        }
+                        {/* { streamingInfo.netflix.pl.link && streamingInfo.netflix.pl.link.length > 0  */}
+                            {/* ? <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://walter.trakt.tv/hotlink-ok/public/favicon.png" alt=""/></a></li> */}
+                            {/* : "" */}
+                        {/* } */}
+                        {
+                            netflix.length > 0 
+                            ? <li><a href={netflix}><img  width="40px" height="40px" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png" alt=""/></a></li>
+                            : ""
+                        }
+                        {
+                            this.state.working === 'no'
+                            ? <li className="availability">Option not available.<br></br> Try again tommorow</li>
+                            : ""
+                        }
                     </ul>
                 </div>
             </div>
