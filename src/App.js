@@ -25,7 +25,9 @@ search = event => {
                 return;
             }
 
-            const movies = res.Search.map(movie => movie.imdbID);
+            const movies2 = res.Search.map(movie => movie.imdbID);
+            console.log(movies2);
+            const movies = Array.from(new Set(movies2));
             console.log(movies);
             this.setState({
                 movies
@@ -41,7 +43,6 @@ handleChange = event => {
 
 render() {
     const { movies } = this.state;
-
     return (
             <div className="wrap">
                 <div className="title">
