@@ -49,7 +49,7 @@ render() {
                     Movie Search App
                 </div>
                 <div className="instruction">
-                    <p>Search for your favourite movie, series or whatever you want.</p>
+                    <p>Search for your favorite movie, series or whatever you want.</p>
                 </div>
             <div className="searchBox">
             <form onSubmit={this.search} role="search" className="search">
