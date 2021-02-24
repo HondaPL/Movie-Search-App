@@ -80,7 +80,9 @@ class MovieCard extends React.Component {
   state = {
       movieData: {},
       streamingData: {},
-      working: "yes"
+      ukStreaming: {},
+      working: "yes",
+      ukWorking: "yes"
   };
 
   componentDidMount() {
@@ -108,6 +110,8 @@ class MovieCard extends React.Component {
     event.preventDefault();
 
     var req = unirest("GET", "https://streaming-availability.p.rapidapi.com/get/basic");
+    var req2 = unirest("GET", "https://streaming-availability.p.rapidapi.com/get/basic");
+
     
     req.query({
         "country": "pl",
@@ -125,11 +129,38 @@ class MovieCard extends React.Component {
     req.end(res => {
         if (res.error) {
             this.setState({working: "no"});
+        } else {
+        // console.log(res.body["streamingInfo"]);
+        const bodyJSON = JSON.parse(res.body);
+        // console.log(bodyJSON);
+        this.setState({streamingData: bodyJSON})
+        }
+    });
+
+    req2.query({
+        "country": "gb",
+        "imdb_id": this.props.movieID
+    });
+    //b569da850cmsh29a3e3ee9449ef2p18187ajsnfafd166c72ca
+    //6a6a213143msh0b5e300691aacd5p1b09bbjsnf7ce3ea5d4e7
+    req2.headers({
+        "x-rapidapi-key": "6a6a213143msh0b5e300691aacd5p1b09bbjsnf7ce3ea5d4e7",
+        "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
+        "useQueryString": true
+    });
+    
+    
+    req2.end(res2 => {
+        if (res2.error) {
+            this.setState({ukWorking: "no"});
             return;
         }
         // console.log(res.body["streamingInfo"]);
-        const bodyJSON = JSON.parse(res.body);
-        this.setState({streamingData: bodyJSON})
+        // console.log(res);
+        // console.log(res2.body);
+        const bodyJSON2 = JSON.parse(res2.body);
+        // console.log(bodyJSON2);
+        this.setState({ukStreaming: bodyJSON2})
     });
   }
 
@@ -151,8 +182,13 @@ class MovieCard extends React.Component {
       } = this.state.movieData;
 
       const {
-        streamingInfo
+        streamingInfo,
       } = this.state.streamingData;
+
+      let ukStreaming = "";
+      ukStreaming = this.state.ukStreaming.streamingInfo;
+    //   console.log(this.state.ukStreaming.streamingInfo);
+    //   console.log(streamingInfo);
 
       let netflix = "";
       let prime = "";
@@ -171,9 +207,17 @@ class MovieCard extends React.Component {
             prime = streamingInfo.prime.pl.link;
             // console.log(prime);
           }
-          if(streamingInfo.disney){
-            // console.log(streamingInfo.disney.pl.link);
-            disney = streamingInfo.disney.pl.link;
+        //   if(streamingInfo.disney){
+        //     // console.log(streamingInfo.disney.pl.link);
+        //     disney = streamingInfo.disney.pl.link;
+        //     // console.log(disney);
+        //   }
+      }
+      if(ukStreaming) {
+        //   console.log(ukStreaming);
+        if(ukStreaming.disney){
+            // console.log(ukStreaming.disney.gb.link);
+            disney = ukStreaming.disney.gb.link;
             // console.log(disney);
           }
       }
@@ -245,7 +289,7 @@ class MovieCard extends React.Component {
                         {/* <li><a href={"https://upflix.pl/film/zobacz/" + Title.replace(/\s+/g, '-').replace(':','') + "-" + Released.substr(-4)}><img  width="100px" height="25px" src="https://assets.upflix.pl/dist/img/logo.png" /></a></li> */}
                         <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://walter.trakt.tv/hotlink-ok/public/favicon.png" alt=""/></a></li>
                         {
-                            !streamingInfo && this.state.working === 'yes' 
+                            !streamingInfo && this.state.working === 'yes' && (Type === "movie" || Type === "series")
                             ? <li><button className="button minutes" value={imdbID} onClick={this.checkAvaiblity}>Streaming?</button></li>
                             : ""
                         }
