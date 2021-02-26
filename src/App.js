@@ -1,6 +1,11 @@
 import React from 'react';
 import './App.scss';
 
+const STREAMING_API = process.env.REACT_APP_STREAMING_API_KEY;
+const STREAMING_UK_API = process.env.REACT_APP_STREAMING_UK_API_KEY;
+const OMDB_API = process.env.REACT_APP_OMDB_API_KEY;
+const OMDB_API_2 = process.env.REACT_APP_OMDB2_API_KEY;
+
 class App extends React.Component {
 
   state = {
@@ -14,7 +19,7 @@ search = event => {
     event.preventDefault();
     axios
         .get(
-            `https://www.omdbapi.com/?apikey=8a27e846&s=${
+            `https://www.omdbapi.com/?apikey=`+ OMDB_API +`&s=${
                 this.state.searchTerm
             }&plot=full`
         )
@@ -26,9 +31,7 @@ search = event => {
             }
 
             const movies2 = res.Search.map(movie => movie.imdbID);
-            // console.log(movies2);
             const movies = Array.from(new Set(movies2));
-            // console.log(movies);
             this.setState({
                 movies
             });
@@ -41,16 +44,41 @@ handleChange = event => {
     });
 };
 
+handleXMen = event => {
+    this.setState({
+        movies: ["tt0120903", "tt0290334", "tt0376994", "tt0458525", "tt1270798", "tt1430132", "tt1877832", "tt3385516", "tt1431045", "tt3315342", "tt5463162", "tt6565702", "tt4682266"]
+    });
+}
+
+handleMarvel = event => {
+    this.setState({
+        movies: ["tt0371746", "tt0800080", "tt1228705", "tt0800369", "tt0458339", "tt0848228", 
+        "tt1300854", "tt1981115", "tt1843866", "tt2015381", "tt2395427","tt0478970",
+        "tt3498820", "tt1211837", "tt3896198", "tt2250912", "tt3501632", "tt1825683", "tt4154756", "tt5095030", "tt4154664", "tt4154796", "tt6320628",
+        "tt9140560", "tt9208876", "tt3480822", "tt9140554", "tt9376612", "tt9032400", "tt10872600", "tt9419884", "tt10648342", "tt9114286", "tt10676048", "tt11213558", "tt6791350", "tt10671440", "tt10676052", "tt6263850"
+    ]
+    });
+}
+
+reloadPage = event => window.location.reload()
+
 render() {
     const { movies } = this.state;
     return (
             <div className="wrap">
-                <div className="title">
+                <div className="title" onClick={this.reloadPage}>
                     Movie Search App
                 </div>
                 <div className="instruction">
                     <p>Search for your favorite movie, series or whatever you want.</p>
                 </div>
+                <div className="franchiseBox">
+                    <img className="franchise" width="40px" heigh="40px" onClick={this.handleXMen} src="https://freepngimg.com/download/xmen/26266-8-x-men-clipart.png" alt="X-men"></img>
+                    <img className="franchise" width="40px" heigh="40px" onClick={this.handleMarvel} src="https://d.newsweek.com/en/full/1394885/marvel-movie-release-dates-2020-2021-black-widow-avengers-endgame.png?w=1600&h=1600&q=88&f=8747f0e542149fcef456f0bfc750f50c" alt="Marvel"></img>
+                </div>
+                <img hidden="{true}" width="40px" height="40px" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0cd82ff4-fa94-4020-9a16-f41089efc593/dd5d95n-46013979-82a8-4fae-ac31-fd4865a8d99d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMGNkODJmZjQtZmE5NC00MDIwLTlhMTYtZjQxMDg5ZWZjNTkzXC9kZDVkOTVuLTQ2MDEzOTc5LTgyYTgtNGZhZS1hYzMxLWZkNDg2NWE4ZDk5ZC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.mL37S_siI4svhpddNLPe-E__VgYmMDwTea5XNYBGp0k" alt=""/>
+                <img hidden="{true}" width="40px" height="40px" src="https://appforwin10.com/wp-content/uploads/2018/12/Amazon-Prime-Video-Free-Download-for-Windows-10.png" alt=""/>
+                <img hidden="{true}" width="40px" height="40px" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png" alt=""/>
             <div className="searchBox">
             <form onSubmit={this.search} role="search" className="search">
                 <input
@@ -71,6 +99,7 @@ render() {
                 </h1>
             )}
       </div>
+      <p className="credits">Created by Adam Hącia 2021</p>
     </div>
     );
 }
@@ -90,13 +119,12 @@ class MovieCard extends React.Component {
 
         axios
             .get(
-                `https://www.omdbapi.com/?apikey=756abb2f&i=${
+                `https://www.omdbapi.com/?apikey=`+ OMDB_API_2 +`&i=${
                     this.props.movieID
                 }`
             )
             .then(res => res.data)
             .then(res => {
-                // console.log(res);
                 this.setState({ movieData: res });
             });
             
@@ -117,10 +145,9 @@ class MovieCard extends React.Component {
         "country": "pl",
         "imdb_id": this.props.movieID
     });
-    //b569da850cmsh29a3e3ee9449ef2p18187ajsnfafd166c72ca
-    //6a6a213143msh0b5e300691aacd5p1b09bbjsnf7ce3ea5d4e7
+
     req.headers({
-        "x-rapidapi-key": "b569da850cmsh29a3e3ee9449ef2p18187ajsnfafd166c72ca",
+        "x-rapidapi-key": STREAMING_API,
         "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
         "useQueryString": true
     });
@@ -130,9 +157,7 @@ class MovieCard extends React.Component {
         if (res.error) {
             this.setState({working: "no"});
         } else {
-        // console.log(res.body["streamingInfo"]);
         const bodyJSON = JSON.parse(res.body);
-        // console.log(bodyJSON);
         this.setState({streamingData: bodyJSON})
         }
     });
@@ -141,10 +166,8 @@ class MovieCard extends React.Component {
         "country": "gb",
         "imdb_id": this.props.movieID
     });
-    //b569da850cmsh29a3e3ee9449ef2p18187ajsnfafd166c72ca
-    //6a6a213143msh0b5e300691aacd5p1b09bbjsnf7ce3ea5d4e7
     req2.headers({
-        "x-rapidapi-key": "6a6a213143msh0b5e300691aacd5p1b09bbjsnf7ce3ea5d4e7",
+        "x-rapidapi-key": STREAMING_UK_API,
         "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
         "useQueryString": true
     });
@@ -155,11 +178,7 @@ class MovieCard extends React.Component {
             this.setState({ukWorking: "no"});
             return;
         }
-        // console.log(res.body["streamingInfo"]);
-        // console.log(res);
-        // console.log(res2.body);
         const bodyJSON2 = JSON.parse(res2.body);
-        // console.log(bodyJSON2);
         this.setState({ukStreaming: bodyJSON2})
     });
   }
@@ -187,48 +206,24 @@ class MovieCard extends React.Component {
 
       let ukStreaming = "";
       ukStreaming = this.state.ukStreaming.streamingInfo;
-    //   console.log(this.state.ukStreaming.streamingInfo);
-    //   console.log(streamingInfo);
-
       let netflix = "";
       let prime = "";
       let disney = "";
 
 
       if(streamingInfo) {
-        //   console.log(streamingInfo);
           if(streamingInfo.netflix){
-            // console.log(streamingInfo.netflix.pl.link);
             netflix = streamingInfo.netflix.pl.link;
-            // console.log(netflix);
           }
           if(streamingInfo.prime){
-            // console.log(streamingInfo.prime.pl.link);
             prime = streamingInfo.prime.pl.link;
-            // console.log(prime);
           }
-        //   if(streamingInfo.disney){
-        //     // console.log(streamingInfo.disney.pl.link);
-        //     disney = streamingInfo.disney.pl.link;
-        //     // console.log(disney);
-        //   }
       }
       if(ukStreaming) {
-        //   console.log(ukStreaming);
         if(ukStreaming.disney){
-            // console.log(ukStreaming.disney.gb.link);
             disney = ukStreaming.disney.gb.link;
-            // console.log(disney);
           }
       }
-
-    //   console.log(this.state.movieData);
-    //   console.log(this.state.streamingData);
-    //   console.log(streamingInfo);
-    //   console.log(Ratings);
-
-
-
 
       if (!Poster || Poster === 'N/A') {
           return null;

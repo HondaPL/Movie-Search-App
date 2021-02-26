@@ -14,7 +14,6 @@ body{
   margin: auto 2px;
 }
 
-
 .searchButton {
   width: 40px;
   height: 36px;
@@ -223,7 +222,6 @@ body{
 
 #ave{
   box-shadow: 0px 0px 150px -45px rgba(199,147,75, 0.7);
-  margin-bottom: 200px;
   &:hover{
     box-shadow: 0px 0px 120px -55px rgba(199,147,75, 0.7);
   }
@@ -259,4 +257,24 @@ body{
   padding-top: -200px;
   cursor: pointer;
   top: -15px;
+}
+
+.franchise{
+  padding-left: 10px;
+}
+
+.credits{
+          color: rgba(255,255,255,0.4);
+          transition: color 0.3s;
+          transition-delay: 0.15s;
+          margin: 0 10px;
+          text-align: center;
+          &:hover{
+            transition: color 0.3s;
+            color: rgba(255,255,255,0.8);
+          }
+          i{
+            font-size: 19px;
+            cursor: pointer;
+          }
 }
