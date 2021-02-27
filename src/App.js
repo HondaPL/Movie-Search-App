@@ -214,7 +214,8 @@ class MovieCard extends React.Component {
           imdbID,
           Ratings,
           Type,
-          Metascore
+          Metascore,
+          Rated
       } = this.state.movieData;
 
       const {
@@ -274,15 +275,14 @@ class MovieCard extends React.Component {
     //   console.log(this.props.movieID);
     //   console.log(this.props.key);
 
-
       return (
         <div className={this.props.view === "grid" ? "movie_card2" : "movie_card"} id={color}>
-            <div className="info_section">
+            <div className={this.props.view !== "grid" ? "info_section" : "info_section info_section2"}>
                 <div className={this.props.view !== "grid" ? "movie_header" : "movie_header movie_header2"}>
                     <img className="locandina" src={Poster} alt="Poster NA"/>
                     <h2>{Title}</h2>
                     <h4>{Released}, {Director}</h4>
-                    
+                    {/* <span className="ratingInfo">{Rated}</span> */}
                 </div>
                 <div className="movie_social">
                 <span className="minutes">{Runtime}</span>
@@ -292,7 +292,7 @@ class MovieCard extends React.Component {
                         Metascore !== "N/A" ? Metascore : 'N/A'
                         } <img width="16px" height="16px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png" alt=" "></img></span>
                     <br></br>
-                    <p className="type">{Genre && Genre.split(', ').map(g => <span className="type">{g}</span>)}</p>
+                    <p className="type"><span className="ratingInfo">{Rated}</span>{Genre && Genre.split(', ').map(g => <span className="type">{g}</span>)}</p>
                 </div>
                 <div className={this.props.view !== "grid" ? "movie_desc" : "movie_desc movie_desc2"}>
                     <p className="text">

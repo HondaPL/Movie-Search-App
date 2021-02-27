@@ -5,13 +5,13 @@ body{
 }
 
 .searchTerm {
-  width: 100%;
-  border-right: none;
-  padding: 5px;
+  width: 99.4%;
+  // border-right: none;
+  // padding: 5px;
   height: 20px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  margin: auto 2px;
+  // border-radius: 5px 0 0 5px;
+  // outline: none;
+  // margin: auto 2px;
 }
 
 .searchButton {
@@ -47,6 +47,14 @@ body{
     border-radius: 5px;
     border: 1px solid rgba(255,255,255,0.13);
     margin-right: 5px;
+    margin-left: 10px;
+  }
+  .ratingInfo{
+    // display: inline-block;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.13);
   }
   .rating{
     display: inline-block;
@@ -142,7 +150,7 @@ body{
 
 @media screen and (min-width: 768px) {
   .movie_header{
-    width: 50%;
+    width: 55%;
   }
 
   .movie_header2{
@@ -196,8 +204,16 @@ body{
     width: 100%;
     margin-top: 85px;
   }
+
+  .movie_header2{
+    margin-top: 0px;
+  }
   
   .movie_desc{
+    width: 100%;
+  }
+
+  .movie_desc2{
     width: 100%;
   }
 
@@ -208,6 +224,10 @@ body{
   .info_section{
     background: linear-gradient(to top, rgb(20, 20, 19) 50%, transparent 100%);
     display: inline-grid;
+  }
+
+  .info_section2{
+    display: inline-block;
   }
 }
 
@@ -304,7 +324,17 @@ body{
     padding: 5px;
     border-radius: 5px;
     border: 1px solid rgba(255,255,255,0.13);
+    margin-left: 10px;
     margin-right: 5px;
+  }
+  .ratingInfo{
+    // display: inline-block;
+    // margin-top: 10px;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.13);
+    // margin-right: 5px;
   }
   .rating{
     display: inline-block;
