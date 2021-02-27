@@ -61,6 +61,19 @@ handleMarvel = event => {
     });
 }
 
+handleStarWars = event => {
+    this.setState({
+        movies: ["tt0076759", "tt0080684", "tt0086190",
+         "tt0120915", "tt0121765", "tt0121766",
+         "tt1185834", "tt0458290", "tt2930604",
+        "tt2488496", "tt3748528", "tt6779076",
+        "tt2527336", "tt3778644", "tt8336340", "tt8111088",
+        "tt2527338", "tt12708542", "tt13622982", "tt13668894" ,
+        "tt9253284", "tt8466564", "tt12262202", "tt13622776", "tt13622996", "tt13622774", "tt10300394"
+    ]
+    });
+}
+
 handleView = event => this.state.view === "normal" ? this.setState({ view: "grid" }) : this.setState({ view: "normal" })
 
 reloadPage = event => window.location.reload()
@@ -78,6 +91,7 @@ render() {
                 <div className="franchiseBox">
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleXMen} src="https://freepngimg.com/download/xmen/26266-8-x-men-clipart.png" alt="X-men"></img>
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleMarvel} src="https://d.newsweek.com/en/full/1394885/marvel-movie-release-dates-2020-2021-black-widow-avengers-endgame.png?w=1600&h=1600&q=88&f=8747f0e542149fcef456f0bfc750f50c" alt="Marvel"></img>
+                    <img className="franchise" width="40px" heigh="40px" onClick={this.handleStarWars} src="https://i.etsystatic.com/14403810/r/il/047211/1197150509/il_570xN.1197150509_hg99.jpg" alt="Star Wars"></img>
                 </div>
                 <img hidden="{true}" width="40px" height="40px" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0cd82ff4-fa94-4020-9a16-f41089efc593/dd5d95n-46013979-82a8-4fae-ac31-fd4865a8d99d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMGNkODJmZjQtZmE5NC00MDIwLTlhMTYtZjQxMDg5ZWZjNTkzXC9kZDVkOTVuLTQ2MDEzOTc5LTgyYTgtNGZhZS1hYzMxLWZkNDg2NWE4ZDk5ZC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.mL37S_siI4svhpddNLPe-E__VgYmMDwTea5XNYBGp0k" alt=""/>
                 <img hidden="{true}" width="40px" height="40px" src="https://appforwin10.com/wp-content/uploads/2018/12/Amazon-Prime-Video-Free-Download-for-Windows-10.png" alt=""/>
