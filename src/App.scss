@@ -427,3 +427,15 @@ body{
   //   border-radius: 11px;
   // }
 }
+
+@media screen and (max-width: 960px) {
+  .movie_card2{
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 1439px) and (min-width: 960px){
+  .movie_card2{
+    width: 47.9%;
+  } 
+}

@@ -86,7 +86,7 @@ render() {
                     Movie Search App
                 </div>
                 <div className="instruction">
-                    <p>Search for your favorite movie, series or whatever you want. <img height="20px" width="20px" onClick={this.handleView} src="https://www.iconsdb.com/icons/preview/white/grid-xxl.png" alt=""/></p>
+                    <p>Search for your favorite movie, series or whatever you want. <img height="20px" width="20px" onClick={this.handleView} src="https://www.pngjoy.com/pngm/101/2109792_grid-background-app-drawer-icon-samsung-hd-png.png" alt=""/></p>
                 </div>
                 <div className="franchiseBox">
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleXMen} src="https://freepngimg.com/download/xmen/26266-8-x-men-clipart.png" alt="X-men"></img>
