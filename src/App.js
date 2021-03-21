@@ -74,6 +74,18 @@ handleStarWars = event => {
     });
 }
 
+handleDCEU = event => {
+    this.setState({
+        movies: ["tt0770828","tt2975590","tt1386697",
+        "tt0451279","tt0974015","tt1477834",
+        "tt0448115","tt7286456","tt7713068",
+        "tt7126948","tt12361974","tt6334354",
+        "tt0439572","tt9663764","tt10151854",
+        "tt6443346"
+    ]
+    });
+}
+
 handleView = event => this.state.view === "normal" ? this.setState({ view: "grid" }) : this.setState({ view: "normal" })
 
 reloadPage = event => window.location.reload()
@@ -92,6 +104,7 @@ render() {
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleXMen} src="https://freepngimg.com/download/xmen/26266-8-x-men-clipart.png" alt="X-men"></img>
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleMarvel} src="https://d.newsweek.com/en/full/1394885/marvel-movie-release-dates-2020-2021-black-widow-avengers-endgame.png?w=1600&h=1600&q=88&f=8747f0e542149fcef456f0bfc750f50c" alt="Marvel"></img>
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleStarWars} src="https://i.etsystatic.com/14403810/r/il/047211/1197150509/il_570xN.1197150509_hg99.jpg" alt="Star Wars"></img>
+                    <img className="franchise" width="40px" heigh="40px" onClick={this.handleDCEU} src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/DC_Comics_logo.svg/600px-DC_Comics_logo.svg.png" alt="DCEU"></img>
                 </div>
                 <img hidden="{true}" width="40px" height="40px" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0cd82ff4-fa94-4020-9a16-f41089efc593/dd5d95n-46013979-82a8-4fae-ac31-fd4865a8d99d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMGNkODJmZjQtZmE5NC00MDIwLTlhMTYtZjQxMDg5ZWZjNTkzXC9kZDVkOTVuLTQ2MDEzOTc5LTgyYTgtNGZhZS1hYzMxLWZkNDg2NWE4ZDk5ZC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.mL37S_siI4svhpddNLPe-E__VgYmMDwTea5XNYBGp0k" alt=""/>
                 <img hidden="{true}" width="40px" height="40px" src="https://appforwin10.com/wp-content/uploads/2018/12/Amazon-Prime-Video-Free-Download-for-Windows-10.png" alt=""/>
