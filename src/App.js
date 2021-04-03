@@ -118,6 +118,7 @@ render() {
                     type="text"
                 />
             </form>
+            <div className="listOfMovies">
             {movies.length > 0 ? (
                 movies.map(movie => (
                     <MovieCard movieID={movie} key={movie} view={view} />
@@ -128,6 +129,7 @@ render() {
                     another search criteria.
                 </h1>
             )}
+            </div>
       </div>
       <p className="credits">Created by Adam Hącia 2021</p>
     </div>
@@ -228,7 +230,8 @@ class MovieCard extends React.Component {
           Ratings,
           Type,
           Metascore,
-          Rated
+          Rated,
+          totalSeasons
       } = this.state.movieData;
 
       const {
@@ -275,7 +278,7 @@ class MovieCard extends React.Component {
 
       if (!Ratings || Ratings.length<2 || Ratings[1].Source !== "Rotten Tomatoes") {
             tomato = "https://cdn2.iconfinder.com/data/icons/food-vegetables-grey/64/Vegetable_Tomato-512.png";
-            ranking = 'None';
+            ranking = 'N/A';
       } else if(Ratings[1].Value[0]>5 || Ratings[1].Value.length === 4){
         tomato = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Rotten_Tomatoes.svg/1009px-Rotten_Tomatoes.svg.png";
         ranking = Ratings[1].Value;
@@ -295,6 +298,7 @@ class MovieCard extends React.Component {
                     <img className="locandina" src={Poster} alt="Poster NA"/>
                     <h2>{Title}</h2>
                     <h4>{Released}, {Director}</h4>
+                    <h4>{totalSeasons ? "Seasons: " + totalSeasons : "" }</h4>
                     {/* <span className="ratingInfo">{Rated}</span> */}
                 </div>
                 <div className="movie_social">
@@ -313,11 +317,14 @@ class MovieCard extends React.Component {
                     </p>
                     
                 </div>
+                
                 <div className="movie_social">
                     <ul>
                         <li><a href={"https://www.imdb.com/title/" + imdbID + "/"}><img  width="70px" height="40px" src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png" alt=""/></a></li>
                         {/* <li><a href={"https://upflix.pl/film/zobacz/" + Title.replace(/\s+/g, '-').replace(':','') + "-" + Released.substr(-4)}><img  width="100px" height="25px" src="https://assets.upflix.pl/dist/img/logo.png" /></a></li> */}
                         <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://walter.trakt.tv/hotlink-ok/public/favicon.png" alt=""/></a></li>
+                        {Date.now() > Date.parse(Released) ?
+                        <>
                         {
                             !streamingInfo && this.state.working === 'yes' && (Type === "movie" || Type === "series")
                             ? <li><button className="button minutes" value={imdbID} onClick={this.checkAvaiblity}>Streaming?</button></li>
@@ -347,8 +354,11 @@ class MovieCard extends React.Component {
                             ? <li className="availability">Option not available.<br></br> Try again tommorow</li>
                             : ""
                         }
+                        </>
+                        : ""} 
                     </ul>
                 </div>
+                
             </div>
             <div className="blur_back" style={{ 
                 backgroundImage: `url(`+ Poster +`)` 

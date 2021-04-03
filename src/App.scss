@@ -38,6 +38,7 @@ body{
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.4s;
+  text-align: left;
   
   .minutes{
     display: inline-block;
@@ -89,7 +90,12 @@ body{
       h2{
         color: #fff;
         font-weight: 300;
-        margin-top: -5px;;
+        margin-top: -5px;
+        overflow:auto;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* number of lines to show */
+        -webkit-box-orient: vertical;
       }
       h4{
         color: #9ac7fa;
@@ -184,11 +190,11 @@ body{
   }
 
   h2{
-    width: 90%;
+    // width: 60%;
   }
 
   h4{
-    width: 90%;
+    // width: 90%;
   }
 
   .text{
@@ -206,6 +212,7 @@ body{
   }
 
   .movie_header2{
+    width: auto;
     margin-top: 0px;
   }
   
@@ -310,12 +317,13 @@ body{
 .movie_card2{
   position: relative;
   display:inline-block;
-  width: 460px;
+  width: 440px;
   height: 500px;
   margin: 10px;
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.4s;
+  text-align: left;
   
   .minutes{
     display: inline-block;
@@ -370,6 +378,11 @@ body{
         color: #fff;
         font-weight: 300;
         margin-top: -5px;
+        overflow:scroll;
+        // text-overflow:unset;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        -webkit-box-orient: vertical;
       }
       h4{
         color: #9ac7fa;
@@ -430,12 +443,17 @@ body{
 
 @media screen and (max-width: 960px) {
   .movie_card2{
-    width: 95%;
+    width: auto;
   }
 }
 
-@media screen and (max-width: 1439px) and (min-width: 960px){
+@media screen and (max-width: 1419px) and (min-width: 960px){
   .movie_card2{
-    width: 47.9%;
+    width: 47%;
   } 
+}
+
+.listOfMovies{
+  margin: auto 20px;
+  text-align: center;
 }
