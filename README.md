@@ -16,13 +16,14 @@
 ## Screenshots
 #### Two types of views
 
-* Computer
+##### Computer
 ![Example screenshot](images/ss1.png)
 ![Example screenshot](images/ss2.png)
 
-* Mobile
+##### Mobile
 ![Example screenshot](images/ss_mob_1.jpeg)
 ![Example screenshot](images/ss_mob_2.jpg)
+
 ## Technologies
 * JavaScript 
 * React
