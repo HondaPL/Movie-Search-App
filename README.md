@@ -5,13 +5,14 @@
 - [Movie Search App](#movie-search-app)
   - [Table of contents](#table-of-contents)
   - [Screenshots](#screenshots)
-      - [Two types of views](#two-types-of-views)
   - [Technologies](#technologies)
   - [Setup](#setup)
   - [Features](#features)
   - [Status](#status)
   - [Inspiration](#inspiration)
   - [Contact](#contact)
+
+## [Try it](https://movie-search-app-react.herokuapp.com/)
 
 ## Screenshots
 #### Two types of views
