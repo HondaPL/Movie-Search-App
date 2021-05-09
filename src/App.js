@@ -51,7 +51,24 @@ handleChange = event => {
 
 handleXMen = event => {
     this.setState({
-        movies: ["tt0120903", "tt0290334", "tt0376994", "tt0458525", "tt1270798", "tt1430132", "tt1877832", "tt3385516", "tt1431045", "tt3315342", "tt5463162", "tt6565702", "tt4682266"
+        movies: ["tt0120903", "tt0290334", "tt0376994", 
+        "tt0458525", "tt1270798", "tt1430132", 
+        "tt1877832", "tt1431045","tt3385516", 
+        //Legion
+        "tt5114356",
+        "tt3315342", "tt5463162", 
+        //Gifted
+        "tt4396630",
+        "tt6565702", "tt4682266"
+        ],
+        franchise: "yes",
+        searchTerm: ''
+    });
+}
+
+handleNolan = event => {
+    this.setState({
+        movies: ["tt0154506", "t0209144","tt0278504",
         ],
         franchise: "yes",
         searchTerm: ''
@@ -134,13 +151,16 @@ render() {
                     Movie Search App
                 </div>
                 <div className="instruction">
-                    <p>Search for your favorite movie, series or whatever you want. <img height="20px" width="20px" onClick={this.handleView} src="https://www.pngjoy.com/pngm/101/2109792_grid-background-app-drawer-icon-samsung-hd-png.png" alt=""/></p>
+                    <p>Search for your favorite movie, series or whatever you want. 
+                        <button onClick={this.handleView} className="square_btn">Change view</button>
+                    </p>
                 </div>
                 <div className="franchiseBox">
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleXMen} src="https://freepngimg.com/download/xmen/26266-8-x-men-clipart.png" alt="X-men"></img>
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleMarvel} src="https://d.newsweek.com/en/full/1394885/marvel-movie-release-dates-2020-2021-black-widow-avengers-endgame.png?w=1600&h=1600&q=88&f=8747f0e542149fcef456f0bfc750f50c" alt="Marvel"></img>
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleStarWars} src="https://i.etsystatic.com/14403810/r/il/047211/1197150509/il_570xN.1197150509_hg99.jpg" alt="Star Wars"></img>
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleDCEU} src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/DC_Comics_logo.svg/600px-DC_Comics_logo.svg.png" alt="DCEU"></img>
+                    {/* <img className="franchise" width="40px" heigh="40px" onClick={this.handleNolan} src="https://www.rmfclassic.pl/scratch/classic2013/static-images/3f/9d2d48c6b236813f.jpg" alt="NOLAN"></img> */}
                 </div>
                 <img hidden="{true}" width="40px" height="40px" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0cd82ff4-fa94-4020-9a16-f41089efc593/dd5d95n-46013979-82a8-4fae-ac31-fd4865a8d99d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMGNkODJmZjQtZmE5NC00MDIwLTlhMTYtZjQxMDg5ZWZjNTkzXC9kZDVkOTVuLTQ2MDEzOTc5LTgyYTgtNGZhZS1hYzMxLWZkNDg2NWE4ZDk5ZC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.mL37S_siI4svhpddNLPe-E__VgYmMDwTea5XNYBGp0k" alt=""/>
                 <img hidden="{true}" width="40px" height="40px" src="https://appforwin10.com/wp-content/uploads/2018/12/Amazon-Prime-Video-Free-Download-for-Windows-10.png" alt=""/>
@@ -261,6 +281,7 @@ class MovieCard extends React.Component {
   render() {
       const {
           Title,
+          Year,
           Released,
           Genre,
           Plot,
@@ -318,6 +339,8 @@ class MovieCard extends React.Component {
       let tomato = "";
       let ranking = 0;
 
+      let message = "Check\n Streaming"
+
       if (!Ratings || Ratings.length<2 || Ratings[1].Source !== "Rotten Tomatoes") {
             tomato = "https://cdn2.iconfinder.com/data/icons/food-vegetables-grey/64/Vegetable_Tomato-512.png";
             ranking = 'N/A';
@@ -339,7 +362,7 @@ class MovieCard extends React.Component {
                 <div className={this.props.view !== "grid" ? "movie_header" : "movie_header movie_header2"}>
                     <img className="locandina" src={Poster} alt="Poster NA"/>
                     <h2>{Title}</h2>
-                    <h4>{Released}, {Director}</h4>
+                    <h4>{Type === "series" ? Year : Released}{Director === 'N/A' ? "": ", "+Director}</h4>
                     <h4>{totalSeasons ? "Seasons: " + totalSeasons : "" }</h4>
                     {/* <span className="ratingInfo">{Rated}</span> */}
                 </div>
@@ -364,14 +387,14 @@ class MovieCard extends React.Component {
                 
                 <div className="movie_social">
                     <ul>
-                        <li><a href={"https://www.imdb.com/title/" + imdbID + "/"}><img  width="70px" height="40px" src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png" alt=""/></a></li>
+                        {imdbID ? <li><a href={"https://www.imdb.com/title/" + imdbID + "/"}><img  width="70px" height="40px" src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png" alt=""/></a></li> : ""}
                         {/* <li><a href={"https://upflix.pl/film/zobacz/" + Title.replace(/\s+/g, '-').replace(':','') + "-" + Released.substr(-4)}><img  width="100px" height="25px" src="https://assets.upflix.pl/dist/img/logo.png" /></a></li> */}
-                        <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://walter.trakt.tv/hotlink-ok/public/favicon.png" alt=""/></a></li>
+                        {imdbID ? <li><a href={"https://trakt.tv/search/imdb/" + imdbID + "/"}><img  width="40px" height="40px" src="https://walter.trakt.tv/hotlink-ok/public/favicon.png" alt=""/></a></li> : ""}
                         {Date.now() > Date.parse(Released) ?
                         <>
                         {
                             !streamingInfo && this.state.working === 'yes' && (Type === "movie" || Type === "series")
-                            ? <li><button className="button minutes" value={imdbID} onClick={this.checkAvaiblity}>Streaming?</button></li>
+                            ? <li className="streamBox"><button heigh="40px" width="100px" className="square_btn stream" value={imdbID} onClick={this.checkAvaiblity}>{message}</button></li>
                             : ""
                         }
                         {/* { streamingInfo.netflix.pl.link && streamingInfo.netflix.pl.link.length > 0  */}
