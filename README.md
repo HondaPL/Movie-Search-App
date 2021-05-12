@@ -4,7 +4,13 @@
 ## Table of contents
 - [Movie Search App](#movie-search-app)
   - [Table of contents](#table-of-contents)
+  - [Try it](#try-it)
   - [Screenshots](#screenshots)
+      - [Main Page](#main-page)
+      - [Search Option](#search-option)
+      - [Two types of views](#two-types-of-views)
+        - [Computer](#computer)
+        - [Mobile](#mobile)
   - [Technologies](#technologies)
   - [Setup](#setup)
   - [Features](#features)
@@ -15,15 +21,24 @@
 ## [Try it](https://movie-search-app-react.herokuapp.com/)
 
 ## Screenshots
+
+#### Main Page
+![Example screenshot](images/main_page.png)
+
+#### Search Option
+![Example screenshot](images/ss2.png)
+
+
 #### Two types of views
 
 ##### Computer
+
+![Example screenshot](images/ss0.png)
 ![Example screenshot](images/ss1.png)
-![Example screenshot](images/ss2.png)
 
 ##### Mobile
-![Example screenshot](images/ss_mob_1.jpeg)
-![Example screenshot](images/ss_mob_2.jpg)
+![Example screenshot](images/mob1.png)
+![Example screenshot](images/mob2.png)
 
 ## Technologies
 * JavaScript 
