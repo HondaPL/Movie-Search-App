@@ -14,7 +14,9 @@ class App extends React.Component {
     view: "normal",
     franchise: "no",
     more: "no",
-    page: 1
+    page: 1,
+    error: null,
+    total: null
 };
 
 getMore = event => {
@@ -26,7 +28,7 @@ getMore = event => {
 
 search = event => {
     var axios = require("axios").default;
-    console.log(this.state.page)
+    // console.log(this.state.page)
     if(event) {
         event.preventDefault();
         // eslint-disable-next-line react/no-direct-mutation-state
@@ -43,14 +45,30 @@ search = event => {
         )
         .then(res => res.data)
         .then(res => {
-            console.log(res)
+            // console.log(res)
+            // console.log(res.totalResults)
+            // console.log(res.Error)
             if (!res.Search) {
-                this.setState({ movies: [] });
+                if(this.state.more === "no") {
+                    this.setState({ 
+                        movies: [] ,
+                        error : res.Error,
+                    });
+                } else {
+                    this.setState({ 
+                        error : res.Error,
+                    }); 
+                }
                 return;
+            } else {
+                this.setState({ 
+                    total: res.totalResults,
+                    error : null
+                }); 
             }
 
             const movies2 = res.Search.map(movie => movie.imdbID);
-            console.log(movies2)
+            // console.log(movies2)
             const movies = Array.from(new Set(movies2));
             this.state.more === "yes" ? (
             this.setState({
@@ -70,7 +88,7 @@ search = event => {
 
 handleChange = event => {
     this.setState({
-        searchTerm: event.target.value
+        searchTerm: event.target.value ? event.target.value : this.state.searchTerm
     });
 };
 
@@ -87,8 +105,8 @@ handleXMen = event => {
         "tt6565702", "tt4682266"
         ],
         franchise: "yes",
-        searchTerm: '',
-        more: "no"
+        more: "no",
+        total: 0
     });
     // eslint-disable-next-line react/no-direct-mutation-state
     this.state.page = 1
@@ -99,8 +117,8 @@ handleNolan = event => {
         movies: ["tt0154506", "t0209144","tt0278504",
         ],
         franchise: "yes",
-        searchTerm: '',
-        more: "no"
+        more: "no",
+        total: 0
     });
     // eslint-disable-next-line react/no-direct-mutation-state
     this.state.page = 1
@@ -111,8 +129,8 @@ handleSony = event => {
         movies: ["tt1270797", "tt7097896","tt5108870", "tt8790086"
         ],
         franchise: "yes",
-        searchTerm: '',
-        more: "no"
+        more: "no",
+        total: 0
     });
     // eslint-disable-next-line react/no-direct-mutation-state
     this.state.page = 1
@@ -149,8 +167,8 @@ Captain Marvel 2, Ant-Man and the Wasp: Quantumania, */
             /*BRAK Mutants, */
         ],
         franchise: "yes",
-        searchTerm: '',
-        more: "no"
+        more: "no",
+        total: 0
     });
     // eslint-disable-next-line react/no-direct-mutation-state
     this.state.page = 1
@@ -167,8 +185,8 @@ handleStarWars = event => {
         "tt9253284", "tt8466564", "tt12262202", "tt13622776", "tt13622996", "tt13622774", "tt10300394"
         ],
         franchise: "yes",
-        searchTerm: '',
-        more: "no"
+        more: "no",
+        total: 0
     });
     // eslint-disable-next-line react/no-direct-mutation-state
     this.state.page = 1
@@ -186,8 +204,8 @@ handleDCEU = event => {
         "tt10151854"
         ],
         franchise: "yes",
-        searchTerm: '',
-        more: "no"
+        more: "no",
+        total: 0
     });
     // eslint-disable-next-line react/no-direct-mutation-state
     this.state.page = 1
@@ -198,7 +216,11 @@ handleView = event => this.state.view === "normal" ? this.setState({ view: "grid
 reloadPage = event => window.location.reload()
 
 render() {
-    const { movies, view } = this.state;
+    let { movies, view } = this.state;
+    // console.log(this.state.error)
+    // console.log(this.state)
+    // console.log("Liczba filmow" + this.state.movies.length)
+    movies = Array.from(new Set(movies));
     return (
             <div className="wrap">
                 <div className="title" onClick={this.reloadPage}>
@@ -243,12 +265,13 @@ render() {
                     ))
             ) : (
                 <h1 className="error">
-                    Couldn't find any movie. Please search again using
-                    another search criteria.
+                    {this.state.error}
+                    {/* Couldn't find any movie. Please search again using
+                    another search criteria. */}
                 </h1>
             )}
             </div>
-            {movies.length >= 10 && this.state.franchise === "no" ? 
+            {this.state.movies.length < this.state.total && !this.state.error ? 
             <div className="listOfMovies">
                 <button onClick={this.getMore} className="square_btn">Load More</button>
             </div>
