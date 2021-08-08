@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 
 const STREAMING_API = process.env.REACT_APP_STREAMING_API_KEY;
-const STREAMING_UK_API = process.env.REACT_APP_STREAMING_UK_API_KEY;
+// const STREAMING_UK_API = process.env.REACT_APP_STREAMING_UK_API_KEY;
 const OMDB_API = process.env.REACT_APP_OMDB_API_KEY;
 const OMDB_API_2 = process.env.REACT_APP_OMDB2_API_KEY;
 
@@ -16,7 +16,8 @@ class App extends React.Component {
     more: "no",
     page: 1,
     error: null,
-    total: null
+    total: null,
+    streamingCode: "pl"
 };
 
 getMore = event => {
@@ -176,7 +177,8 @@ Captain Marvel 2, Ant-Man and the Wasp: Quantumania, */
 
 handleStarWars = event => {
     this.setState({
-        movies: ["tt0076759", "tt0193524", "tt0080684", "tt0086190", "tt0088510", "tt0088515",
+        movies: ["tt0076759", "tt0193524", "tt0080684", "tt0086190", "tt0087225",
+         "tt0088510", "tt0088515", "tt0089110",
          "tt0120915", "tt0121765","tt0361243", "tt0121766",
          "tt1185834", "tt0458290", "tt2930604",
         "tt2488496", "tt3748528","tt11281500", "tt6779076", //FOD
@@ -215,8 +217,12 @@ handleView = event => this.state.view === "normal" ? this.setState({ view: "grid
 
 reloadPage = event => window.location.reload()
 
+handleStreaming = event => {
+    this.setState({ streamingCode: event.target.value, movies : [], more: "no", total: 0 })
+}
+
 render() {
-    let { movies, view } = this.state;
+    let { movies, view, streamingCode } = this.state;
     // console.log(this.state.error)
     // console.log(this.state)
     // console.log("Liczba filmow" + this.state.movies.length)
@@ -227,10 +233,21 @@ render() {
                     Movie Search App
                 </div>
                 <div className="instruction">
-                    <p>Search for your favorite movie, series or whatever you want. 
                         <button onClick={this.handleView} className="square_btn">Change view</button>
-                    </p>
+                        <br />Check streaming for:
+                        <form>
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio" value="pl" onClick={this.handleStreaming} />Poland
+                            </label>
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio" value="gb" onClick={this.handleStreaming} />United Kingdom
+                            </label>
+                            <label class="radio-inline">
+                            <input type="radio" name="optradio" value="de" onClick={this.handleStreaming} />Germany
+                            </label>
+                        </form>
                 </div>
+                
                 <div className="franchiseBox">
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleXMen} src="https://freepngimg.com/download/xmen/26266-8-x-men-clipart.png" alt="X-men"></img>
                     <img className="franchise" width="40px" heigh="40px" onClick={this.handleMarvel} src="https://d.newsweek.com/en/full/1394885/marvel-movie-release-dates-2020-2021-black-widow-avengers-endgame.png?w=1600&h=1600&q=88&f=8747f0e542149fcef456f0bfc750f50c" alt="Marvel"></img>
@@ -242,26 +259,25 @@ render() {
                 <img hidden="{true}" width="40px" height="40px" src="https://appforwin10.com/wp-content/uploads/2018/12/Amazon-Prime-Video-Free-Download-for-Windows-10.png" alt=""/>
                 <img hidden="{true}" width="40px" height="40px" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png" alt=""/>
             <div className="searchBox">
-            <form onSubmit={this.search} role="search" className="search">
-                <input
-                    placeholder="Search for a movie"
-                    onChange={this.handleChange}
-                    className="searchTerm"
-                    type="text"
-                />
+            <form class="search__container" onSubmit={this.search}>
+                <p class="search__title">
+                Search for your favorite movie, series or whatever you want.
+                </p>
+                <input onChange={this.handleChange} class="search__input" type="text" placeholder="Search" />
             </form>
+
             <div className="listOfMovies">
             {movies.length > 0 ? (
                 this.state.franchise === "yes" ? (
                     movies
                     .map(movie => {
-                        return <MovieCard movieID={movie} key={movie} view={view}/>
+                        return <MovieCard movieID={movie} key={movie} view={view} streamingCode={streamingCode}/>
                     })
             )
                     :
                     movies
                     .map(movie => (
-                        <MovieCard movieID={movie} key={movie} view={view} />
+                        <MovieCard movieID={movie} key={movie} view={view} streamingCode={streamingCode} />
                     ))
             ) : (
                 <h1 className="error">
@@ -290,7 +306,7 @@ class MovieCard extends React.Component {
       streamingData: {},
       ukStreaming: {},
       working: "yes",
-      ukWorking: "yes"
+    //   ukWorking: "yes"
   };
 
   componentDidMount() {
@@ -314,11 +330,11 @@ class MovieCard extends React.Component {
     event.preventDefault();
 
     var req = unirest("GET", "https://streaming-availability.p.rapidapi.com/get/basic");
-    var req2 = unirest("GET", "https://streaming-availability.p.rapidapi.com/get/basic");
+    // var req2 = unirest("GET", "https://streaming-availability.p.rapidapi.com/get/basic");
 
     
     req.query({
-        "country": "pl",
+        "country": this.props.streamingCode,
         "imdb_id": this.props.movieID
     });
 
@@ -338,25 +354,25 @@ class MovieCard extends React.Component {
         }
     });
 
-    req2.query({
-        "country": "gb",
-        "imdb_id": this.props.movieID
-    });
-    req2.headers({
-        "x-rapidapi-key": STREAMING_UK_API,
-        "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
-        "useQueryString": true
-    });
+    // req2.query({
+    //     "country": this.props.streamingCode,
+    //     "imdb_id": this.props.movieID
+    // });
+    // req2.headers({
+    //     "x-rapidapi-key": STREAMING_UK_API,
+    //     "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
+    //     "useQueryString": true
+    // });
     
     
-    req2.end(res2 => {
-        if (res2.error) {
-            this.setState({ukWorking: "no"});
-            return;
-        }
-        const bodyJSON2 = JSON.parse(res2.body);
-        this.setState({ukStreaming: bodyJSON2})
-    });
+    // req2.end(res2 => {
+    //     if (res2.error) {
+    //         this.setState({ukWorking: "no"});
+    //         return;
+    //     }
+    //     const bodyJSON2 = JSON.parse(res2.body);
+    //     this.setState({ukStreaming: bodyJSON2})
+    // });
   }
 
 
@@ -383,28 +399,67 @@ class MovieCard extends React.Component {
         streamingInfo,
       } = this.state.streamingData;
 
-      let ukStreaming = "";
-      ukStreaming = this.state.ukStreaming.streamingInfo;
+    //   let ukStreaming = "";
+    //   ukStreaming = this.state.ukStreaming.streamingInfo;
       let netflix = "";
       let prime = "";
       let disney = "";
+      let apple = "";
+      console.log(streamingInfo)
 
 
-      if(streamingInfo) {
+    if(streamingInfo && this.props.streamingCode === "pl") {
           if(streamingInfo.netflix){
             netflix = streamingInfo.netflix.pl.link;
           }
           if(streamingInfo.prime){
             prime = streamingInfo.prime.pl.link;
           }
-      }
-      if(ukStreaming) {
-        if(ukStreaming.disney){
-            disney = ukStreaming.disney.gb.link;
+          if(streamingInfo.disney){
+            disney = streamingInfo.disney.pl.link;
           }
-      }
+          if(streamingInfo.apple){
+            apple = streamingInfo.apple.pl.link;
+          }
+    }
+    if(streamingInfo && this.props.streamingCode === "gb") {
+        if(streamingInfo.netflix){
+          netflix = streamingInfo.netflix.gb.link;
+        }
+        if(streamingInfo.prime){
+          prime = streamingInfo.prime.gb.link;
+        }
+        if(streamingInfo.disney){
+          disney = streamingInfo.disney.gb.link;
+        }
+        if(streamingInfo.apple){
+            apple = streamingInfo.apple.gb.link;
+        }
+    }
+    if(streamingInfo && this.props.streamingCode === "de") {
+        if(streamingInfo.netflix){
+          netflix = streamingInfo.netflix.de.link;
+        }
+        if(streamingInfo.prime){
+          prime = streamingInfo.prime.de.link;
+        }
+        if(streamingInfo.disney){
+          disney = streamingInfo.disney.de.link;
+        }
+        if(streamingInfo.apple){
+            apple = streamingInfo.apple.de.link;
+        }
+    }
+    //   if(ukStreaming) {
+    //     if(ukStreaming.disney){
+    //         disney = ukStreaming.disney.link;
+    //       }
+    //   }
 
-      if (!Poster || Poster === 'N/A') {
+    //   if (!Poster || Poster === 'N/A') {
+    //       return null;
+    //   }
+      if (!Title || Title === 'N/A') {
           return null;
       }
 
@@ -442,7 +497,9 @@ class MovieCard extends React.Component {
         <div className={this.props.view === "grid" ? "movie_card2" : "movie_card"} id={color}>
             <div className={this.props.view !== "grid" ? "info_section" : "info_section info_section2"}>
                 <div className={this.props.view !== "grid" ? "movie_header" : "movie_header movie_header2"}>
-                    <img className="locandina" src={Poster} alt="Poster NA"/>
+                    {
+                        Poster && Poster !== 'N/A'  ? <img className="locandina" src={Poster} alt="Poster NA"/> : ""
+                    }
                     <h2>{Title}</h2>
                     <h4>{Type === "series" ? Year : Released}{Director === 'N/A' ? "": ", "+Director}</h4>
                     <h4>{totalSeasons ? "Seasons: " + totalSeasons : "" }</h4>
@@ -499,6 +556,11 @@ class MovieCard extends React.Component {
                             : ""
                         }
                         {
+                            apple.length > 0 
+                            ? <li><a href={apple}><img  width="40px" height="40px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsupport.apple.com%2Fcontent%2Fdam%2Fedam%2Fapplecare%2Fimages%2Fen_US%2Fappletv%2Ffeatured-content-apple-tv-icon_2x.png&f=1&nofb=1" alt=""/></a></li>
+                            : ""
+                        }
+                        {
                             this.state.working === 'no'
                             ? <li className="availability">Option not available.<br></br> Try again tommorow</li>
                             : ""
@@ -509,10 +571,14 @@ class MovieCard extends React.Component {
                 </div>
                 
             </div>
-            <div className="blur_back" style={{ 
-                backgroundImage: `url(`+ Poster +`)` 
-                }}>
-            </div>
+            {   
+                Poster ?
+                <div className="blur_back" style={{ 
+                    backgroundImage: `url(`+ Poster +`)` 
+                    }}>
+                </div>
+                : ""
+            }
         </div>
       );
   }
