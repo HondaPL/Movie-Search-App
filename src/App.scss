@@ -110,7 +110,7 @@ body{
         word-wrap: break-word;
         margin-right: -15px;
       }
-      .locandina{
+      .poster{
         position: relative;
         float: left;
         margin-right: 20px;
@@ -132,9 +132,11 @@ body{
       padding-left: 15px;
       padding-bottom: 20px;
       ul{
+        vertical-align: middle;
         list-style: none;
         padding: 0;
         li{
+        vertical-align: middle;
           display: inline-block;
           color: rgba(255,255,255,0.4);
           transition: color 0.3s;
@@ -401,7 +403,7 @@ body{
         margin: none none;
         margin-top: -5px;
       }
-      .locandina{
+      .poster{
         position: relative;
         float: left;
         margin-right: 20px;
@@ -422,9 +424,11 @@ body{
       padding-left: 15px;
       padding-bottom: 20px;
       ul{
+        vertical-align: middle;
         list-style: none;
         padding: 0;
         li{
+        vertical-align: middle;
           display: inline-block;
           color: rgba(255,255,255,0.4);
           transition: color 0.3s;
@@ -442,14 +446,6 @@ body{
       }
     }
   }
-  // .blur_back{
-  //   position: absolute;
-  //   top: 0;
-  //   z-index: 1;
-  //   height: 100%; right: 0;
-  //   background-size: cover;
-  //   border-radius: 11px;
-  // }
 }
 
 @media screen and (max-width: 400px) {
@@ -488,16 +484,12 @@ body{
   background-image: -webkit-linear-gradient(45deg, #34322e 0%, #34322e 100%);
   background-image: linear-gradient(45deg, #34322e 0%, #34322e 100%);
   transition: .4s;
+  text-align: center;
 }
 
 .square_btn:hover {
   background-image: -webkit-linear-gradient(45deg, #3c3a38 0%, #3c3a38 100%);
   background-image: linear-gradient(45deg, #3c3a38 0%, #3c3a38 100%);
-}
-
-.stream{
-  position: relative;
-  top: -13px
 }
 
 /* Base styling */
