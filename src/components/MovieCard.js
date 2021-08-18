@@ -2,15 +2,8 @@ import React from 'react';
 import '../App.scss'
 
 
-const aws = require('aws-sdk');
-
-const OMDB_API_2 = new aws.S3({
-    key: process.env.REACT_APP_OMDB2_API_KEY
-});
-
-const STREAMING_API_KEYS = new aws.S3({
-    key: [process.env.REACT_APP_STREAMING_API_KEY, process.env.REACT_APP_STREAMING_UK_API_KEY];
-});
+const OMDB_API_2 = process.env.REACT_APP_OMDB2_API_KEY;
+const STREAMING_API_KEYS = [process.env.REACT_APP_STREAMING_API_KEY, process.env.REACT_APP_STREAMING_UK_API_KEY];
 
 class MovieCard extends React.Component {
     state = {
@@ -25,7 +18,7 @@ class MovieCard extends React.Component {
 
         axios
             .get(
-                `https://www.omdbapi.com/?apikey=` + OMDB_API_2.key + `&i=${this.props.movieID
+                `https://www.omdbapi.com/?apikey=` + OMDB_API_2 + `&i=${this.props.movieID
                 }`
             )
             .then(res => res.data)
@@ -49,7 +42,7 @@ class MovieCard extends React.Component {
         this.setState({ currentCode: this.props.streamingCode })
 
         req.headers({
-            "x-rapidapi-key": STREAMING_API_KEYS.key[Math.floor(Math.random() * STREAMING_API_KEYS.length)],
+            "x-rapidapi-key": STREAMING_API_KEYS[Math.floor(Math.random() * STREAMING_API_KEYS.length)],
             "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
             "useQueryString": true
         });
