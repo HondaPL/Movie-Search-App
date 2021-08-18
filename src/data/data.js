@@ -52,129 +52,133 @@ export const dceu = [
 ];
 
 export const starWars = [
-    "tt0076759", 
-    "tt0193524", 
-    "tt0080684", 
-    "tt0086190", 
-    "tt0087225",
-    "tt0088510", 
-    "tt0088515", 
-    "tt0089110",
-    "tt0120915", 
-    "tt0121765", 
-    "tt0361243", 
-    "tt0121766",
-    "tt1185834", 
-    "tt0458290", 
-    "tt2930604",
-    "tt2488496", 
-    "tt3748528", 
-    "tt11281500", 
-    "tt6779076", //FOD
-    "tt2527336", 
-    "tt3778644", 
-    "tt8336340", 
-    "tt9353248", 
-    "tt10799452", 
-    "tt8111088", //Mando
-    "tt2527338", 
-    "tt12708542", 
-    "tt13622982", 
-    "tt13668894", //Book of Boba
-    "tt9253284", 
-    "tt8466564", 
-    "tt12262202", 
-    "tt13622776", 
-    "tt13622996", 
-    "tt13622774", 
-    "tt10300394"
+    "tt0076759", //Star Wars
+    "tt0193524", //The Star Wars Holiday Special
+    "tt0080684", //Star Wars: Episode V - The Empire Strikes Back
+    "tt0086190", //Star Wars: Episode VI - Return of the Jedi
+    "tt0087225", //Caravan of Courage: An Ewok Adventure
+    "tt0088510", //Star Wars: Droids
+    "tt0088515", //Ewoks
+    "tt0089110", //Ewoks: The Battle for Endor
+    "tt0120915", //Star Wars: Episode I - The Phantom Menace
+    "tt0121765", //Star Wars: Episode II - Attack of the Clones
+    "tt0361243", //Star Wars: Clone Wars
+    "tt0121766", //Star Wars: Episode III - Revenge of the Sith
+    "tt1185834", //Star Wars: The Clone Wars
+    "tt0458290", //Star Wars: The Clone Wars
+    "tt2930604", //Star Wars: Rebels
+    "tt2488496", //Star Wars: Episode VII - The Force Awakens
+    "tt3748528", //Rogue One
+    "tt11281500", //Star Wars Blips
+    "tt6779076", //Star Wars: Forces of Destiny
+    "tt2527336", //Star Wars: Episode VIII - The Last Jedi
+    "tt3778644", //Solo: A Star Wars Story
+    "tt8336340", //Star Wars: Resistance
+    "tt9353248", //Star Wars Galaxy of Adventures
+    "tt10799452", //Star Wars: Roll Out
+    "tt8111088", //The Mandalorian
+    "tt2527338", //Star Wars: Episode IX - The Rise of Skywalker
+    "tt12708542", //Star Wars: The Bad Batch
+    "tt13622982", //Star Wars: Visions
+    "tt13668894", //The Book of Boba Fett
+    "tt9253284", //Andor
+    "tt8466564", //Obi-Wan Kenobi
+    "tt12262202", //The Acolyte
+    "tt13622776", //Ahsoka
+    "tt13622996", //Star Wars: Lando
+    "tt13622774", //The Rangers of the New Republic
+    "tt10300394", //Rogue Squadron
 ];
 
 export const xMen = [
-    "tt0120903", 
-    "tt0290334", 
-    "tt0376994",
-    "tt0458525", 
-    "tt1270798", 
-    "tt1430132",
-    "tt1877832", 
-    "tt1431045", 
-    "tt3385516",
-    //Legion
-    "tt5114356",
-    "tt3315342", 
-    "tt4396630",
-    //Gifted
-    "tt5463162",
-    "tt6565702", 
-    "tt4682266",
+    "tt0120903", //X-Men
+    "tt0290334", //X2
+    "tt0376994", //X-Men: The Last Stand
+    "tt0458525", //X-Men Origins: Wolverine
+    "tt1270798", //X-Men: First Class
+    "tt1430132", //The Wolverine
+    "tt1877832", //X-Men: Days of Future Past
+    "tt1431045", //Deadpool
+    "tt3385516", //X-Men: Apocalypse
+    "tt5114356", //Legion
+    "tt3315342", //Logan
+    "tt4396630", //The Gifted
+    "tt5463162", //Deadpool 2
+    "tt6565702", //X-Men: Dark Phoenix
+    "tt4682266", //The New Mutants
 ];
 
 export const mcu = [
-    /*First phase*/
-    "tt0371746", 
-    "tt0800080", 
-    "tt1228705", 
-    "tt0800369", 
-    "tt0458339", 
-    "tt0848228",
-    /*Second phase*/
-    "tt1300854", 
-    "tt1981115", 
-    "tt1843866", 
-    "tt2015381", 
-    "tt2395427", 
-    "tt0478970",
-    /*Third phase*/
-    "tt3498820", 
-    "tt1211837", 
-    "tt3896198", 
-    "tt2250912", 
-    "tt3501632", 
-    "tt1825683",
-    "tt4154756", 
-    "tt5095030", 
-    "tt4154664", 
-    "tt4154796", 
-    "tt6320628",
-    /*Fourth phase 2021* 
-WandaVision, The Falcon and the Winter Soldier, Loki, Black Widow, What If…?, 
-Shang-Chi and the Legend of the Ten Rings, Ms. Marvel, Hawkeye, The Eternals, Spider-Man: No Way Home*/
-    "tt9140560", 
-    "tt9208876", 
-    "tt9140554", 
-    "tt3480822", 
-    "tt10168312", 
-    "tt9376612",
-    "tt9032400", 
-    "tt10160804", 
-    "tt10872600", 
-    "tt10857164",
-    /*Fourth phase 2022
-    Doctor Strange in the Multiverse of Madness, Thor: Love and Thunder, Black Panther 2
-Captain Marvel 2, Ant-Man and the Wasp: Quantumania, */
-    "tt9419884", 
-    "tt10648342", 
-    "tt9114286",
-    "tt10676048", 
-    "tt11213558",
-    /*Guardians of the Galaxy Holiday Special, She-Hulk, 
-    Moon Knight, Guardians of the Galaxy 3, Blade, Fantastic Four, 
-    Deadpool 3, Ironheart, Armor Wars, Secret Invasion, I Am Groot,*/
-    "tt13623136", 
-    "tt10857160", 
-    "tt10234724",
-    "tt6791350", 
-    "tt10671440",
-    "tt10676052", 
-    "tt6263850", 
-    "tt13623126",
-    "tt13623128", 
-    "tt13157618", 
-    "tt13623148",
-    /*UWS? and ECHO? and CA4*/
-    "tt13968252", 
-    "tt13966962", 
-    "tt14513940"
-    /*No Mutants, */
+
+    /*I PHASE*/
+
+    "tt0371746", //Iron Man
+    "tt0800080", //The Incredible Hulk
+    "tt1228705", //Iron Man 2
+    "tt0800369", //Thor
+    "tt0458339", //Captain America: The First Avenger
+    "tt0848228", //The Avengers
+    
+    /*II PHASE*/
+
+    "tt1300854", //Iron Man 3
+    "tt1981115", //Thor: The Dark World
+    "tt1843866", //Captain America: The Winter Soldier
+    "tt2015381", //Guardians of the Galaxy
+    "tt2395427", //Avengers: Age of Ultron
+    "tt0478970", //Ant-Man
+    
+    /*III PHASE*/
+
+    "tt3498820", //Captain America: Civil War
+    "tt1211837", //Doctor Strange
+    "tt3896198", //Guardians of the Galaxy Vol. 2
+    "tt2250912", //Spider-Man: Homecoming
+    "tt3501632", //Thor: Ragnarok
+    "tt1825683", //Black Panther
+    "tt4154756", //Avengers: Infinity War
+    "tt5095030", //Ant-Man and the Wasp
+    "tt4154664", //Captain Marvel
+    "tt4154796", //Avengers: Endgame
+    "tt6320628", //Spider-Man: Far from Home
+    
+    /*IV PHASE 2021*/
+
+    "tt9140560", //WandaVision
+    "tt9208876", //The Falcon and the Winter Soldier
+    "tt9140554", //Loki
+    "tt3480822", //Black Widow
+    "tt10168312", //What If…? 
+    "tt9376612", //Shang-Chi and the Legend of the Ten Rings
+    "tt9032400", //The Eternals
+    "tt10160804", //Hawkeye
+    "tt10872600", //Spider-Man: No Way Home
+    
+    /*IV PHASE 2022*/
+
+    "tt10857164", //Ms. Marvel
+    "tt9419884", //Doctor Strange in the Multiverse of Madness
+    "tt10648342", //Thor: Love and Thunder
+    "tt9114286", //Black Panther: Wakanda Forever
+    "tt10676048", //The Marvels
+    "tt13623136", //Guardians of the Galaxy Holiday Special
+    "tt10857160", //She-Hulk
+    "tt10234724", //Moon Knight
+    "tt13157618", //Secret Invasion
+
+    /*IV PHASE 2023*/
+    "tt11213558", //Ant-Man and the Wasp: Quantumania
+    "tt6791350", //Guardians of the Galaxy 3
+    "tt10676052", //Fantastic Four
+
+    /*???*/
+    "tt10671440", //Blade
+    "tt6263850", //Deadpool 3
+    "tt13623126", //Ironheart
+    "tt13623128", //Armor Wars
+    "tt13623148", //I Am Groot
+    "tt13968252", //Untitled Wakanda Project ?
+    "tt13966962", //Echo ?
+    "tt14513940", //Captain America 4 ?
+    //No Mutants 2024?
 ]

@@ -1,4 +1,6 @@
 import React from 'react';
+import '../App.scss'
+
 
 const OMDB_API_2 = process.env.REACT_APP_OMDB2_API_KEY;
 const STREAMING_API_KEYS = [process.env.REACT_APP_STREAMING_API_KEY, process.env.REACT_APP_STREAMING_UK_API_KEY];
@@ -148,7 +150,7 @@ class MovieCard extends React.Component {
         if (!Ratings || Ratings.length < 2 || Ratings[1].Source !== "Rotten Tomatoes") {
             tomato = "https://cdn2.iconfinder.com/data/icons/food-vegetables-grey/64/Vegetable_Tomato-512.png";
             ranking = 'N/A';
-        } else if (Ratings[1].Value[0] > 5 || Ratings[1].Value.length === 4) {
+        } else if ((Ratings[1].Value[0] > 5 && Ratings[1].Value.length > 2) || Ratings[1].Value.length === 4) {
             tomato = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Rotten_Tomatoes.svg/1009px-Rotten_Tomatoes.svg.png";
             ranking = Ratings[1].Value;
         } else {
@@ -194,7 +196,7 @@ class MovieCard extends React.Component {
                                 <>
                                     {
                                         !streamingInfo && this.state.working === 'yes' && (Type === "movie" || Type === "series")
-                                            ? <li><div height="40px" className="square_btn stream" value={imdbID} onClick={this.checkAvailability}>
+                                            ? <li><div height="40px" className="square_btn stream button" value={imdbID} onClick={this.checkAvailability}>
                                                 Check
                                                 <br />
                                                 streaming
