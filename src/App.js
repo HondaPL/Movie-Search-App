@@ -4,8 +4,11 @@ import './App.scss';
 import { alien, dceu, mcu, nolan, sony, starWars, xMen } from './data/data'
 import MovieCard from './components/MovieCard'
 
-const OMDB_API = process.env.REACT_APP_OMDB_API_KEY;
+const aws = require('aws-sdk');
 
+const OMDB_API = new aws.S3({
+    key: process.env.REACT_APP_OMDB_API_KEY,
+});
 class App extends React.Component {
 
     state = {
@@ -37,7 +40,7 @@ class App extends React.Component {
             this.state.page++
         axios
             .get(
-                `https://www.omdbapi.com/?apikey=` + OMDB_API + `&s=${this.state.searchTerm
+                `https://www.omdbapi.com/?apikey=` + OMDB_API.key + `&s=${this.state.searchTerm
                 }&plot=full&page=` + this.state.page
             )
             .then(res => res.data)
