@@ -3,13 +3,6 @@ import React from 'react';
 import './App.scss';
 import { alien, dceu, mcu, nolan, sony, starWars, xMen } from './data/data'
 import MovieCard from './components/MovieCard'
-
-const aws = require('aws-sdk');
-
-let secret = new aws.S3({
-  omdb: process.env.REACT_APP_OMDB_API_KEY
-});
-
 class App extends React.Component {
 
     state = {

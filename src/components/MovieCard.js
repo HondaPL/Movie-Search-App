@@ -1,12 +1,5 @@
 import React from 'react';
 import '../App.scss'
-
-const aws = require('aws-sdk');
-
-let secret = new aws.S3({
-  omdb: process.env.REACT_APP_OMDB2_API_KEY,
-  streaming: [process.env.REACT_APP_STREAMING_API_KEY, process.env.REACT_APP_STREAMING_UK_API_KEY]
-});
 class MovieCard extends React.Component {
     state = {
         movieData: {},
@@ -44,7 +37,7 @@ class MovieCard extends React.Component {
         this.setState({ currentCode: this.props.streamingCode })
 
         req.headers({
-            "x-rapidapi-key": secret.streaming[Math.floor(Math.random() * secret.streaming.length)],
+            "x-rapidapi-key": [process.env.REACT_APP_STREAMING_API_KEY, process.env.REACT_APP_STREAMING_UK_API_KEY][Math.floor(Math.random() * [process.env.REACT_APP_STREAMING_API_KEY, process.env.REACT_APP_STREAMING_UK_API_KEY].length)],
             "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
             "useQueryString": true
         });
