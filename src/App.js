@@ -41,7 +41,7 @@ class App extends React.Component {
             this.state.page++
         axios
             .get(
-                `https://www.omdbapi.com/?apikey=` + secret.omdb + `&s=${this.state.searchTerm
+                `https://www.omdbapi.com/?apikey=` + process.env.REACT_APP_OMDB_API_KEY + `&s=${this.state.searchTerm
                 }&plot=full&page=` + this.state.page
             )
             .then(res => res.data)

@@ -20,7 +20,7 @@ class MovieCard extends React.Component {
 
         axios
             .get(
-                `https://www.omdbapi.com/?apikey=` + secret.omdb + `&i=${this.props.movieID
+                `https://www.omdbapi.com/?apikey=` + process.env.REACT_APP_OMDB2_API_KEY + `&i=${this.props.movieID
                 }`
             )
             .then(res => res.data)
