@@ -6,7 +6,7 @@
   - [Table of contents](#table-of-contents)
   - [Try it](#try-it)
   - [Screenshots](#screenshots)
-      - [Main Page](#main-page)
+      - [Landing Page](#landing-page)
       - [Search Option](#search-option)
       - [Two types of views](#two-types-of-views)
         - [Computer](#computer)
@@ -22,19 +22,19 @@
 
 ## Screenshots
 
-#### Main Page
-![Example screenshot](images/main_page.png)
+#### Landing Page
+![Example screenshot](images/landing_page.png)
 
 #### Search Option
-![Example screenshot](images/ss2.png)
+![Example screenshot](images/search.png)
 
 
 #### Two types of views
 
 ##### Computer
 
-![Example screenshot](images/ss0.png)
-![Example screenshot](images/ss1.png)
+![Example screenshot](images/normal_view.png)
+![Example screenshot](images/grid_view.png)
 
 ##### Mobile
 ![Example screenshot](images/mob1.png)
@@ -52,15 +52,13 @@
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
+The page will reload, if you make edits.
 ## Features
 * Searching for movies, tv series and more
-* Availabiity on Netflix, Prime Videos and Disney Plus
+* Availability on Netflix, Prime Videos, Disney Plus and AppleTV.
 * Links to imdB.com and trakt.tv
 * Two view options - changes by clicking grid icon on the top of the page
-* Fast option to show MCU, DCEU, Fox's X-men and Star Wars movies.
+* Fast option to show MCU, DCEU, Fox's X-men, Star Wars, Alien, Sony Venom Universe and Nolan movies.
 * Movie info including [metacritic](https://www.metacritic.com/) , [imdB](https://www.imdB.com/), [rottentomatoes](https://www.rottentomatoes.com/) ratings.
 * Works on computers and mobile devices as well
   
@@ -70,7 +68,7 @@ You will also see any lint errors in the console.
 Project is: _in progress_
 
 ## Inspiration
-I always wanted to have one app or page to find movies or tv series and find if they're available on my streaming services. I also wanted to create someting in React, so I learned how does the React works and how to use API's in it. 
+I always wanted to have one app or page to find movies or tv series and find if they're available on my streaming services. I also wanted to create something in React, so I learned how does the React works and how to use API's in it. 
 
 ## Contact
 Created by [@HondaPL](https://hacia.students.wmi.amu.edu.pl/)

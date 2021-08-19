@@ -402,6 +402,11 @@ button{
     }
 }
 
+.franchiseBox{
+  text-align: center;
+  margin-top: 5px;
+}
+
 @media screen and (min-width: 768px) {
   .movie_header{
     min-height: none;
@@ -430,6 +435,10 @@ button{
     width: 50%;
     background-position: -100% 10% !important;  
   }
+}
+
+.stream{
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

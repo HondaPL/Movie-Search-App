@@ -191,7 +191,7 @@ class MovieCard extends React.Component {
                                 <>
                                     {
                                         !streamingInfo && this.state.working === 'yes' && (Type === "movie" || Type === "series")
-                                            ? <li><div height="40px" className="square_btn stream button" value={imdbID} onClick={this.checkAvailability}>
+                                            ? <li><div height="40px" className="square_btn stream" value={imdbID} onClick={this.checkAvailability}>
                                                 Check
                                                 <br />
                                                 streaming
